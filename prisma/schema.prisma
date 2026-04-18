@@ -1,0 +1,37 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Character {
+  id      Int    @id @default(autoincrement())
+  name    String
+  type    String
+  health  Int
+  attack  Int
+  defense Int
+  speed   Int
+
+  battlesAsC1 Battle[] @relation("Character1")
+  battlesAsC2 Battle[] @relation("Character2")
+  wins        Battle[] @relation("Winner")
+}
+
+model Battle {
+  id           Int       @id @default(autoincrement())
+  character1   Character @relation("Character1", fields: [character1Id], references: [id])
+  character1Id Int
+
+  character2   Character @relation("Character2", fields: [character2Id], references: [id])
+  character2Id Int
+
+  winner   Character @relation("Winner", fields: [winnerId], references: [id])
+  winnerId Int
+
+  turns Int
+}
