@@ -37,7 +37,10 @@ export default async function CharactersPage({
     <div>
       <h1>Personajes</h1>
 
-      <Link href="/characters/new">Crear personaje</Link>
+      <div style={{ display: "flex", gap: "0.5rem", marginBottom: "1rem" }}>
+        <Link href="/characters/new">Crear personaje</Link>
+        <Link href="/battles">Ir a batallas</Link>
+      </div>
 
       <div style={{ marginBottom: "1rem", display: "flex", gap: "0.5rem" }}>
         {filters.map((filter) => (

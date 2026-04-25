@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
+import Link from "next/link";
 import { createCharacter } from "../actions";
 
 export default function NewCharacterPage() {
@@ -46,7 +47,10 @@ export default function NewCharacterPage() {
         <input name="speed" type="number" min="1" max="100" required />
       </label>
 
-      <button type="submit">Crear</button>
+      <div style={{ display: "flex", gap: "0.5rem", marginTop: "1rem" }}>
+        <button type="submit">Crear</button>
+        <Link href="/characters">Volver a personajes</Link>
+      </div>
     </form>
   );
 }
