@@ -28,21 +28,18 @@ export default async function BattlesPage({ searchParams }: BattlesPageProps) {
   ]);
 
   return (
-    <div style={{ padding: "2rem" }}>
+    <div className="app-page theme-battles">
       <h1>Simulador de Batallas</h1>
-      <Link
-        href="/characters"
-        style={{ marginBottom: "1rem", display: "block" }}
-      >
-        ← Volver a Personajes
-      </Link>
+      <div className="actions-row">
+        <Link href="/characters" className="btn btn-blue">
+          Volver a Personajes
+        </Link>
+      </div>
 
-      {error ? (
-        <p style={{ color: "#b00020", marginBottom: "1rem" }}>{error}</p>
-      ) : null}
+      {error ? <p className="error">{error}</p> : null}
 
-      <form action={startBattle}>
-        <div style={{ marginBottom: "1rem" }}>
+      <form action={startBattle} className="panel form-grid">
+        <div>
           <label htmlFor="char1">Personaje 1: </label>
           <select id="char1" name="char1" required>
             <option value="">Seleccionar...</option>
@@ -54,7 +51,7 @@ export default async function BattlesPage({ searchParams }: BattlesPageProps) {
           </select>
         </div>
 
-        <div style={{ marginBottom: "1rem" }}>
+        <div>
           <label htmlFor="char2">Personaje 2: </label>
           <select id="char2" name="char2" required>
             <option value="">Seleccionar...</option>
@@ -66,35 +63,31 @@ export default async function BattlesPage({ searchParams }: BattlesPageProps) {
           </select>
         </div>
 
-        <button type="submit">¡Iniciar Batalla!</button>
+        <button type="submit" className="btn-amber">
+          ¡Iniciar Batalla!
+        </button>
       </form>
 
-      <section style={{ marginTop: "2rem" }}>
+      <section style={{ marginTop: "1.25rem" }}>
         <h2>Historial de Batallas</h2>
 
         {battles.length === 0 ? (
           <p>Aun no hay batallas registradas.</p>
         ) : (
-          <div style={{ display: "grid", gap: "0.75rem" }}>
+          <div className="grid">
             {battles.map((battle) => (
-              <div
-                key={battle.id}
-                style={{
-                  border: "1px solid #ddd",
-                  borderRadius: "8px",
-                  padding: "0.75rem 1rem",
-                  backgroundColor: "#fafafa",
-                }}
-              >
-                <p style={{ margin: 0 }}>
+              <div key={battle.id} className="panel">
+                <p>
                   <strong>Batalla #{battle.id}</strong>:{" "}
                   {battle.character1.name} vs {battle.character2.name}
                 </p>
-                <p style={{ margin: "0.35rem 0 0 0" }}>
+                <p className="muted">
                   Ganador: <strong>{battle.winner.name}</strong> | Turnos:{" "}
                   {battle.turns}
                 </p>
-                <Link href={`/battles/${battle.id}`}>Ver resultado</Link>
+                <Link href={`/battles/${battle.id}`} className="btn btn-violet">
+                  Ver resultado
+                </Link>
               </div>
             ))}
           </div>

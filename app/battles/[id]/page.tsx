@@ -25,7 +25,7 @@ export default async function BattlePage({ params }: BattlePageProps) {
 
   if (!battle) {
     return (
-      <div style={{ padding: "2rem" }}>
+      <div className="app-page theme-battles">
         <h1>Batalla no encontrada</h1>
         <Link href="/battles">← Volver</Link>
       </div>
@@ -33,41 +33,20 @@ export default async function BattlePage({ params }: BattlePageProps) {
   }
 
   return (
-    <div style={{ padding: "2rem", maxWidth: "800px" }}>
-      <Link href="/battles">← Nueva Batalla</Link>
-
-      <div
-        style={{
-          marginTop: "2rem",
-          padding: "2rem",
-          border: "2px solid #ffd700",
-          borderRadius: "8px",
-          backgroundColor: "#fffacd",
-        }}
-      >
-        <h2 style={{ textAlign: "center", fontSize: "2rem", margin: 0 }}>
+    <div className="app-page theme-battles">
+      <div className="highlight" style={{ textAlign: "center" }}>
+        <h2 style={{ fontSize: "2rem", margin: 0 }}>
           🏆 ¡{battle.winner.name} GANA!
         </h2>
-        <p style={{ textAlign: "center", margin: "0.5rem 0 0 0" }}>
-          en {battle.turns} turnos
-        </p>
+        <p className="muted">en {battle.turns} turnos</p>
       </div>
 
-      <div
-        style={{
-          marginTop: "2rem",
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: "2rem",
-        }}
-      >
+      <div className="two-col" style={{ marginTop: "1rem" }}>
         <div
+          className="panel"
           style={{
-            padding: "1rem",
-            border: "2px solid #ccc",
-            borderRadius: "8px",
             backgroundColor:
-              battle.winner.id === battle.character1.id ? "#90EE90" : "#FFB6C6",
+              battle.winner.id === battle.character1.id ? "#dcfce7" : "#fee2e2",
           }}
         >
           <h3>{battle.character1.name}</h3>
@@ -80,12 +59,10 @@ export default async function BattlePage({ params }: BattlePageProps) {
         </div>
 
         <div
+          className="panel"
           style={{
-            padding: "1rem",
-            border: "2px solid #ccc",
-            borderRadius: "8px",
             backgroundColor:
-              battle.winner.id === battle.character2.id ? "#90EE90" : "#FFB6C6",
+              battle.winner.id === battle.character2.id ? "#dcfce7" : "#fee2e2",
           }}
         >
           <h3>{battle.character2.name}</h3>
@@ -98,19 +75,7 @@ export default async function BattlePage({ params }: BattlePageProps) {
         </div>
       </div>
 
-      <div
-        style={{
-          marginTop: "2rem",
-          padding: "1.5rem",
-          backgroundColor: "#f5f5f5",
-          borderRadius: "8px",
-          fontFamily: "monospace",
-          whiteSpace: "pre-wrap",
-          lineHeight: "1.6",
-          fontSize: "0.9rem",
-          overflowX: "auto",
-        }}
-      >
+      <div className="panel" style={{ marginTop: "1rem" }}>
         <h3>Resumen</h3>
         <p>
           Ganador: <strong>{battle.winner.name}</strong>
@@ -121,29 +86,11 @@ export default async function BattlePage({ params }: BattlePageProps) {
         </p>
       </div>
 
-      <div style={{ marginTop: "2rem", display: "flex", gap: "1rem" }}>
-        <Link
-          href="/battles"
-          style={{
-            padding: "0.75rem 1.5rem",
-            backgroundColor: "#0070f3",
-            color: "white",
-            textDecoration: "none",
-            borderRadius: "4px",
-          }}
-        >
+      <div className="actions-row" style={{ marginTop: "1rem" }}>
+        <Link href="/battles" className="btn btn-amber">
           Nueva Batalla
         </Link>
-        <Link
-          href="/characters"
-          style={{
-            padding: "0.75rem 1.5rem",
-            backgroundColor: "#666",
-            color: "white",
-            textDecoration: "none",
-            borderRadius: "4px",
-          }}
-        >
+        <Link href="/characters" className="btn btn-blue">
           Ver Personajes
         </Link>
       </div>
