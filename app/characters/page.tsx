@@ -34,15 +34,19 @@ export default async function CharactersPage({
   ];
 
   return (
-    <div>
+    <div className="app-page theme-characters">
       <h1>Personajes</h1>
 
-      <div style={{ display: "flex", gap: "0.5rem", marginBottom: "1rem" }}>
-        <Link href="/characters/new">Crear personaje</Link>
-        <Link href="/battles">Ir a batallas</Link>
+      <div className="actions-row">
+        <Link href="/characters/new" className="btn btn-teal">
+          Crear personaje
+        </Link>
+        <Link href="/battles" className="btn btn-amber">
+          Ir a batallas
+        </Link>
       </div>
 
-      <div style={{ marginBottom: "1rem", display: "flex", gap: "0.5rem" }}>
+      <div className="filters">
         {filters.map((filter) => (
           <Link
             key={filter.value}
@@ -51,40 +55,35 @@ export default async function CharactersPage({
                 ? "/characters"
                 : `/characters?tipo=${filter.value}`
             }
-            style={{
-              padding: "0.5rem 1rem",
-              backgroundColor:
-                tipo === filter.value || (!tipo && filter.value === "todos")
-                  ? "#0070f3"
-                  : "#e5e5e5",
-              color:
-                tipo === filter.value || (!tipo && filter.value === "todos")
-                  ? "white"
-                  : "black",
-              textDecoration: "none",
-              borderRadius: "4px",
-              cursor: "pointer",
-            }}
+            className={`filter-chip ${
+              tipo === filter.value || (!tipo && filter.value === "todos")
+                ? "active"
+                : ""
+            }`}
           >
             {filter.label}
           </Link>
         ))}
       </div>
 
-      {characters.map((c) => (
-        <div key={c.id}>
-          <p>
-            {c.name} ({c.type})
-          </p>
-          <p>
-            ❤️ {c.health} | ⚔️ {c.attack} | 🛡️ {c.defense} | ⚡ {c.speed}
-          </p>
-          <form action={deleteCharacter}>
-            <input type="hidden" name="id" value={c.id} />
-            <button type="submit">Eliminar</button>
-          </form>
-        </div>
-      ))}
+      <div className="grid">
+        {characters.map((c) => (
+          <div key={c.id} className="panel">
+            <p>
+              {c.name} ({c.type})
+            </p>
+            <p className="muted">
+              ❤️ {c.health} | ⚔️ {c.attack} | 🛡️ {c.defense} | ⚡ {c.speed}
+            </p>
+            <form action={deleteCharacter}>
+              <input type="hidden" name="id" value={c.id} />
+              <button type="submit" className="btn-red">
+                Eliminar
+              </button>
+            </form>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
