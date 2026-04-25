@@ -10,7 +10,7 @@ datasource db {
 
 model Character {
   id      Int    @id @default(autoincrement())
-  name    String
+  name    String @unique
   type    String
   health  Int
   attack  Int
