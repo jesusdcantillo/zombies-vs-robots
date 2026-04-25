@@ -2,33 +2,25 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div style={{ padding: "2rem" }}>
-      <h1>Zombies vs Robots</h1>
-      <div style={{ display: "flex", gap: "1rem", marginTop: "2rem" }}>
-        <Link
-          href="/characters"
+    <div className="app-page home-centered">
+      <div className="home-card panel">
+        <h1>Zombies vs Robots</h1>
+        <p className="muted">¿Qué quieres crear?</p>
+        <div
+          className="actions-row"
           style={{
-            padding: "1rem 2rem",
-            backgroundColor: "#0070f3",
-            color: "white",
-            textDecoration: "none",
-            borderRadius: "4px",
+            marginTop: "0.9rem",
+            justifyContent: "center",
+            marginBottom: 0,
           }}
         >
-          Personajes
-        </Link>
-        <Link
-          href="/battles"
-          style={{
-            padding: "1rem 2rem",
-            backgroundColor: "#f3007a",
-            color: "white",
-            textDecoration: "none",
-            borderRadius: "4px",
-          }}
-        >
-          Batallas
-        </Link>
+          <Link href="/characters" className="btn btn-teal">
+            Personajes
+          </Link>
+          <Link href="/battles" className="btn btn-amber">
+            Batallas
+          </Link>
+        </div>
       </div>
     </div>
   );
